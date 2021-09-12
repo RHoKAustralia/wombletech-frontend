@@ -14,15 +14,25 @@ type FormValues = {
 };
 
 const DonationForm: React.VFC = () => {
-  const [{ data, loading, error }, execute] = useAxios("https://httpbin.org/", {
-    manual: true,
-  });
+  const [{ data, loading, error }, execute] = useAxios(
+    "https://httpbin.org/post",
+    {
+      manual: true,
+    }
+  );
 
   const onFinish = async (formValues: FormValues) => {
     const result = await execute({
       method: "POST",
       data: formValues,
     });
+
+    if (result.status !== 200) {
+      message.error("Something went wrong");
+      return;
+    }
+
+    message.success("Form submitted successfully");
   };
 
   return (
