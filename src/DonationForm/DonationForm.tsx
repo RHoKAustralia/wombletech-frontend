@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Button, Form, Input, Select, message } from "antd";
 import useAxios from "axios-hooks";
 import "./styles.css";
@@ -21,6 +21,8 @@ const DonationForm: React.VFC = () => {
     }
   );
 
+  const [form] = Form.useForm();
+
   const onFinish = async (formValues: FormValues) => {
     const result = await execute({
       method: "POST",
@@ -33,11 +35,13 @@ const DonationForm: React.VFC = () => {
     }
 
     message.success("Form submitted successfully");
+    form.resetFields();
   };
 
   return (
     <div className="formContainer">
       <Form
+        form={form}
         name="donationForm"
         onFinish={onFinish}
         labelCol={{ span: 8 }}
