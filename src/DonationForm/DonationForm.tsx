@@ -116,7 +116,7 @@ const DonationForm: React.VFC = () => {
             { required: true, message: "Please select a donation type." },
           ]}
         >
-          <Select placeholder="Please select your state">
+          <Select placeholder="Type of donation">
             <Select.Option value="onceOff">Once-off donations</Select.Option>
             <Select.Option value="regular">
               Can help with regular donations
