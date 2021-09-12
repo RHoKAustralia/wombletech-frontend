@@ -6,16 +6,16 @@ import "./styles.css";
 type FormValues = {
   name: string;
   email: string;
-  phone?: string;
+  phoneNumber?: string;
   region: string;
   suburb: string;
-  additionalInformation?: string;
+  description?: string;
   donationType: string;
 };
 
 const DonationForm: React.VFC = () => {
   const [{ data, loading, error }, execute] = useAxios(
-    "https://httpbin.org/post",
+    "https://gopf9uamhd.execute-api.ap-southeast-2.amazonaws.com/Prod/donation_submit",
     {
       manual: true,
     }
@@ -65,7 +65,7 @@ const DonationForm: React.VFC = () => {
           <Input />
         </Form.Item>
 
-        <Form.Item label="Phone" name="phone">
+        <Form.Item label="Phone Number" name="phoneNumber">
           <Input />
         </Form.Item>
 
@@ -120,7 +120,7 @@ const DonationForm: React.VFC = () => {
           </Select>
         </Form.Item>
 
-        <Form.Item label="Extra Information" name="extraInformation">
+        <Form.Item label="Extra Information" name="description">
           <Input.TextArea placeholder="Please tell us more about the equipment you have available, and location where you would like to have it picked up from, and any info about preferred timings, etc." />
         </Form.Item>
 
